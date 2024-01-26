@@ -1,6 +1,3 @@
-// Wait for the DOM to finish loading before running the game
-// Get the button elements and add event listeners to them
-
 document.addEventListener("DOMContentLoaded", function() {
     let buttons = document.getElementsByTagName("button");
 
@@ -44,6 +41,8 @@ function runGame(gameType) {
         displayMultiplyQuestion(num1, num2);
     } else if (gameType === "subtract" ) {
         displaySubtractQuestion(num1, num2);
+    } else if (gameType === "division"){
+	    displayDivisionQuestion(num1,num2);
     } else {
         alert(`Unknown game type: ${gameType}`);
         throw `Unknown game type: ${gameType}. Aborting!`;
@@ -89,6 +88,8 @@ function calculateCorrectAnswer() {
         return [operand1 * operand2, "multiply"];
     } else if (operator === "-") {
         return [operand1 - operand2, "subtract"];
+    } else if (operator ==="/") {
+		return [operand1 / operand2, "division"];
     } else {
         alert(`Unimplemented operator ${operator}`);
         throw `Unimplemented operator ${operator}. Aborting!`;
@@ -138,4 +139,12 @@ function displayMultiplyQuestion(operand1, operand2) {
     document.getElementById('operand2').textContent = operand2;
     document.getElementById('operator').textContent = "x";
 
+}
+
+// Add your division question here
+function displayDivisionQuestion(operand1, operand2) {
+    operand1 = operand1 * operand2;
+    document.getElementById("operand1").textContent = operand1;
+    document.getElementById("operand2").textContent = operand2;
+    document.getElementById("operator").textContent = "/";
 }
